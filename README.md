@@ -11,6 +11,8 @@ Este proyecto implementa un **pipeline de datos en Python con PostgreSQL** que p
 
 Se procesan inicialmente los archivos `2012-1.csv` hasta `2012-5.csv`, y luego se ejecuta un archivo de validación `validation.csv`.  
 
+Luego para datos mas grandes y que necesiten ser trasmitidos en tiempo real se usa PySpark para procesamiento por lotes a medida que se vaya añadiendo un nuevo archivo el pipeline lo analizara, lo cargara en PostgreSQL y mostrara los resultados en Tiempo Real
+
 ---
 
 ## 📊 Flujo del Pipeline  
@@ -36,10 +38,11 @@ flowchart LR
  
 
 ### 2. Python y librerías  
-Requiere **Python 3.9+** y las siguientes dependencias:  
+Requiere **Python 3.9+** **PySpark** y las siguientes dependencias:  
 
 ```bash
 pip install -r requirements.txt
+pip install pyspark findspark
 ```
 
 Archivo `requirements.txt`:  
@@ -47,6 +50,7 @@ Archivo `requirements.txt`:
 pandas==2.2.2
 sqlalchemy==2.0.31
 psycopg2-binary==2.9.9
+pyspark==4.0.1
 ```
 
 ---
