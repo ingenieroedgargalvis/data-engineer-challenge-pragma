@@ -57,11 +57,16 @@ psycopg2-binary==2.9.9
 data-engineer-challenge-pragma/
 │
 ├── CSV_Data/               
-|              ├── 2012-1.csv
-│              ├── 2012-2.csv
-│              ├── 2012-3.csv
-│              ├── 2012-4.csv
-│              └── 2012-5.csv
+|           ├── 2012-1.csv
+│           ├── 2012-2.csv
+│           ├── 2012-3.csv
+│           ├── 2012-4.csv
+│           └── 2012-5.csv
+├──ETL/
+|     ├── conexionpostgresql.py
+|     ├── pipeline.py
+|     └── Procesamiento_en_streaming.py
+| 
 |── validation.csv
 │
 ├── pipeline.py    # Script principal con el pipeline
@@ -94,7 +99,7 @@ data-engineer-challenge-pragma/
    python conexionpostgresql.py
    python pipeline.py
    ```
-
+6. Luego se se requiere trasmitir datos en tiempo real se an guardando los archivos en la ruta CSV_Data\stream_input despues de haber ejecutado el pipeline Procesamiento_en_streaming.py
 ---
 
 ## 📊 Resultados esperados  
@@ -116,13 +121,37 @@ Resultados de la consulta a la BD:
       25000           456.78            10.0          1200.5
 ```
 
+Resultado esperado del procesamiento por lotes en streaming con PySpark
+
+```
+
+Batch: 0
+-------------------------------------------
++-----------+------------------+-------------+-------------+
+|total_filas|precio_promedio   |precio_minimo|precio_maximo|
++-----------+------------------+-------------+-------------+
+|143        |57.884892086330936|10.0         |100.0        |
++-----------+------------------+-------------+-------------+
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++-----------+-----------------+-------------+-------------+
+|total_filas|precio_promedio  |precio_minimo|precio_maximo|
++-----------+-----------------+-------------+-------------+
+|1200143    |50.03499526304873|0.01         |100.0        |
++-----------+-----------------+-------------+-------------+
+
+```
 ---
 
 ## 🛠️ Tecnologías utilizadas  
 - **Python 3**  
 - **pandas** (lectura de CSV y micro-batches)  
 - **SQLAlchemy** (conexión a PostgreSQL)  
-- **PostgreSQL** (almacenamiento de datos)  
+- **PostgreSQL** (almacenamiento de datos)
+- **SPARK** (procesamiento por lotes)
+- **HADOOP** (Complemento PySpark)
 
 ---
 
